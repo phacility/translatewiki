@@ -1,0 +1,9 @@
+{
+  "phabricator.uri": "https://secure.phabricator.com/",
+  "load": [
+    "../libphutil/src/",
+    "../arcanist/src/",
+    "../phabricator/src/",
+    "src/"
+  ]
+}
