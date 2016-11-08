@@ -28,6 +28,12 @@ final class TranslatewikiManagementExportWorkflow
               'Base URI for browsing files in the project being exported.'),
           ),
           array(
+            'name' => 'clean',
+            'help' => pht(
+              'Pass --clean to the underlying extractor to drop caches '.
+              'before extracting strings and do a full clean rebuild. Slow!'),
+          ),
+          array(
             'name' => 'library',
             'wildcard' => true,
           ),
@@ -67,9 +73,15 @@ final class TranslatewikiManagementExportWorkflow
       "%s\n",
       pht('Extracting library strings...'));
 
+    $extract_args = array();
+    if ($args->getArg('clean')) {
+      $extract_args[] = '--clean';
+    }
+
     phutil_passthru(
-      '%R extract %R',
+      '%R extract %Ls %R',
       $i18n_bin,
+      $extract_args,
       $export_root);
 
     $strings_path = $export_root.'/.cache/i18n_strings.json';
