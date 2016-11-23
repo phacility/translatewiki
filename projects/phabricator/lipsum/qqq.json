@@ -1,0 +1,17 @@
+{
+  "29efd0bdaa04ae91": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$82 PhabricatorLipsumGenerateWorkflow.php:82]\n",
+  "32332b3df8a3771d": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/generator/PhabricatorTestDataGenerator.php$50 PhabricatorTestDataGenerator.php:50]\n",
+  "4b2283b7167429d1": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$112 PhabricatorLipsumGenerateWorkflow.php:112]\n",
+  "63017d2cc8fa35f7": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$137 PhabricatorLipsumGenerateWorkflow.php:137]\n",
+  "6ad21d0a2036d6e8": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$135 PhabricatorLipsumGenerateWorkflow.php:135]\n",
+  "76453142e5f31ab4": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/generator/PhabricatorTestDataGenerator.php$102 PhabricatorTestDataGenerator.php:102]\n",
+  "7b8d8ae984b43bbd": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$98 PhabricatorLipsumGenerateWorkflow.php:98]\n",
+  "8cd3cac1380eb4ec": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$10 PhabricatorLipsumGenerateWorkflow.php:10]\n",
+  "90a51575c9bd4563": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$114 PhabricatorLipsumGenerateWorkflow.php:114]\n",
+  "9922906d3c889107": "Variable Types: NONE, NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$154 PhabricatorLipsumGenerateWorkflow.php:154]\n",
+  "a568df6c0fc85e72": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$49 PhabricatorLipsumGenerateWorkflow.php:49]\n",
+  "c9fb502c220f5ec3": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$25 PhabricatorLipsumGenerateWorkflow.php:25]\n",
+  "e92bac9cc25935f8": "Variable Types: NONE.\nUsed in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$91 PhabricatorLipsumGenerateWorkflow.php:91]\n",
+  "e9f3727584c821b2": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$89 PhabricatorLipsumGenerateWorkflow.php:89]\n",
+  "f335a7372135e4e7": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/lipsum/management/PhabricatorLipsumGenerateWorkflow.php$105 PhabricatorLipsumGenerateWorkflow.php:105]\n"
+}

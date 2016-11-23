@@ -1,0 +1,6 @@
+{
+  "26abab6249cc3135": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/home/application/PhabricatorHomeApplication.php$17 PhabricatorHomeApplication.php:17]\n",
+  "8718991272b26248": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/home/controller/PhabricatorHomeMainController.php$174 PhabricatorHomeMainController.php:174]\n",
+  "c33f680d17c1a541": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/home/controller/PhabricatorHomeController.php$63 PhabricatorHomeController.php:63]\n",
+  "c40810f5c31dca2d": "Used in:\n\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/home/application/PhabricatorHomeApplication.php$65 PhabricatorHomeApplication.php:65]\n[https://secure.phabricator.com/diffusion/P/browse/master/src//applications/home/application/PhabricatorHomeApplication.php$71 PhabricatorHomeApplication.php:71]\n"
+}

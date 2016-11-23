@@ -78,11 +78,15 @@ final class TranslatewikiManagementExportWorkflow
       $extract_args[] = '--clean';
     }
 
-    phutil_passthru(
+    $err = phutil_passthru(
       '%R extract %Ls %R',
       $i18n_bin,
       $extract_args,
       $export_root);
+
+    if ($err) {
+      return $err;
+    }
 
     $strings_path = $export_root.'/.cache/i18n_strings.json';
     if (!Filesystem::pathExists($strings_path)) {
@@ -105,6 +109,7 @@ final class TranslatewikiManagementExportWorkflow
     $result_en = array();
     $result_qqq = array();
     $result_raw = array();
+    $frequency = array();
     foreach ($strings_data as $string => $spec) {
       $string_key = $this->getStringKey($string);
 
@@ -116,11 +121,15 @@ final class TranslatewikiManagementExportWorkflow
         continue;
       }
 
-      $result_en[$string_key] = $translatewiki_string;
-      $result_raw[$string_key] = $string;
-      $result_qqq[$string_key] = $this->getTranslatewikiContext(
+      $group = $this->getTranslatewikiGroup($spec);
+
+      $result_raw[$group][$string_key] = $string;
+      $result_en[$group][$string_key] = $translatewiki_string;
+      $result_qqq[$group][$string_key] = $this->getTranslatewikiContext(
         $string,
         $spec);
+
+      $frequency[$group][$string_key] = 0;
     }
 
     $translatewiki_root = phutil_get_library_root('translatewiki');
@@ -142,27 +151,50 @@ final class TranslatewikiManagementExportWorkflow
         'data' => $result_raw,
         'help' => pht('Raw strings'),
       ),
+      array(
+        'name' => 'frequency.json',
+        'data' => $frequency,
+        'help' => pht('Frequency Data'),
+        'type' => 'frequency',
+      ),
     );
 
-    Filesystem::createDirectory($projects_root, 0755, true);
+
     foreach ($writes as $write) {
-      $path = $projects_root.$write['name'];
+      foreach ($write['data'] as $group_key => $data) {
+        $path = $projects_root.$group_key.'/'.$write['name'];
+        Filesystem::createDirectory(dirname($path), 0755, true);
 
-      echo tsprintf(
-        "%s\n",
-        pht(
-          'Writing data (%s) to "%s"...',
-          $write['help'],
-          Filesystem::readablePath($path)));
+        echo tsprintf(
+          "%s\n",
+          pht(
+            'Writing data (%s, %s) to "%s"...',
+            $write['help'],
+            $group_key,
+            Filesystem::readablePath($path)));
 
-      $data = $write['data'];
+        $as_list = false;
+        switch (idx($write, 'type')) {
+          case 'frequency':
+            arsort($data);
+            $data = array_keys($data);
+            $as_list = true;
+            break;
+          default:
+            ksort($data);
+            break;
+        }
 
-      ksort($data);
+        if ($as_list) {
+          $data = id(new PhutilJSON())
+            ->encodeAsList($data);
+        } else {
+          $data = id(new PhutilJSON())
+            ->encodeFormatted($data);
+        }
 
-      $data = id(new PhutilJSON())
-        ->encodeFormatted($data);
-
-      Filesystem::writeFile($path, $data);
+        Filesystem::writeFile($path, $data);
+      }
     }
 
     echo tsprintf(
@@ -282,6 +314,25 @@ final class TranslatewikiManagementExportWorkflow
       }
     }
 
+    $types = idx($spec, 'types');
+    if ($types) {
+      // Relabel types to be more familiar to Translatewiki users.
+      $type_map = array(
+        '' => pht('NONE'),
+        'person' => pht('GENDER'),
+        'number' => pht('PLURAL'),
+      );
+
+      $type_list = array();
+      foreach ($types as $type) {
+        $type_list[] = idx($type_map, $type, $type);
+      }
+      $type_list = implode(', ', $type_list);
+
+      $help[] = pht('Variable Types: %s.', $type_list);
+      $help[] = "\n";
+    }
+
     if ($usage) {
       $help[] = pht('Used in:');
       $help[] = "\n\n";
@@ -289,6 +340,26 @@ final class TranslatewikiManagementExportWorkflow
     }
 
     return implode('', $help);
+  }
+
+  private function getTranslatewikiGroup(array $spec) {
+    $applications = array();
+    foreach ($spec['uses'] as $use) {
+      $matches = null;
+      $ok = preg_match(
+        '(/applications/(?P<application>[^/]+)/)',
+        $use['file'],
+        $matches);
+      if ($ok) {
+        $applications[$matches['application']] = true;
+      }
+    }
+
+    if (count($applications) == 1) {
+      return head_key($applications);
+    }
+
+    return 'core';
   }
 
 }
