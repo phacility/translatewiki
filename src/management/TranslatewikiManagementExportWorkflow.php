@@ -129,7 +129,7 @@ final class TranslatewikiManagementExportWorkflow
         $string,
         $spec);
 
-      $frequency[$group][$string_key] = 0;
+      $frequency['<global>'][$string_key] = 0;
     }
 
     $translatewiki_root = phutil_get_library_root('translatewiki');
@@ -162,7 +162,13 @@ final class TranslatewikiManagementExportWorkflow
 
     foreach ($writes as $write) {
       foreach ($write['data'] as $group_key => $data) {
-        $path = $projects_root.$group_key.'/'.$write['name'];
+        if ($group_key == '<global>') {
+          $group_path = null;
+        } else {
+          $group_path = $group_key.'/';
+        }
+
+        $path = $projects_root.$group_path.$write['name'];
         Filesystem::createDirectory(dirname($path), 0755, true);
 
         echo tsprintf(
